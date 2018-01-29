@@ -13,7 +13,7 @@
         <% @pairs.each do |pair| %>
         <div class="row">
           <div class="col-md-7">
-            <h4><%= pair.student %> and <%= pair.match %></h4>
+            <h4><%= pair.student.name %> and <%= pair.match.name %></h4>
           </div>
           <div class="col-md-3 right">
           </div>
@@ -23,6 +23,6 @@
       </div>
     </div>
 
-    <%= link_to "Add new pair", new_room_path, class: "btn btn-primary" %>
+    <%= link_to "Add new pair", new_pair_path, class: "btn btn-primary" %>
   </div>
 </div>
