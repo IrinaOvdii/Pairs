@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-3">
+    <ul class="sidebar-list">
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Your users
+      </div>
+      <div class="panel-body">
+
+        <% @users.each do |user| %>
+        <div class="row">
+          <div class="col-md-7">
+            <table  class="table table-striped">
+              <tr>
+                <td>
+                  <span><%= user.name %></span>
+                </td>
+                <td>
+                  <span><%= link_to "Make admin", class: "btn btn-primary" %></span>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-md-3 right">
+          </div>
+        </div>
+        <% end %>
+
+      </div>
+    </div>
+
+    <%= link_to "Generate new pair", pairs_path, class: "btn btn-primary" %>
+  </div>
+</div>
