@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   resources :pairs
   resources :users, only: [:index]
+  #post 'admin' => 'users#admin', as: :admin
 end

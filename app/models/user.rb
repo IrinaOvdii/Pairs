@@ -17,5 +17,9 @@ class User < ApplicationRecord
   #   pairs << match_pairs
   #   pairs << student_pairs
   # end
+  #
+  # def make_admin
+  #   admin = true
+  # end
 
 end

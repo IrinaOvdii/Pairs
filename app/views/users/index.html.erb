@@ -13,7 +13,16 @@
         <% @users.each do |user| %>
         <div class="row">
           <div class="col-md-7">
-            <h4><%= user.name %></h4>
+            <table  class="table table-striped">
+              <tr>
+                <td>
+                  <span><%= user.name %></span>
+                </td>
+                <td>
+                  <span><%= link_to "Make admin", class: "btn btn-primary" %></span>
+                </td>
+              </tr>
+            </table>
           </div>
           <div class="col-md-3 right">
           </div>
