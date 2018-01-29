@@ -3,4 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  has_many :student_pairs, :class_name => 'Pair', :foreign_key => 'student_id'
+  has_many :match_pairs, :class_name => 'Pair', :foreign_key => 'match_id'
+
+  #has_many :students, through: :match_pairs, source: :user
+  #has_many :matches, through: :student_pairs, source: :user
 end

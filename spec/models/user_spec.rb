@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-<<<<<<< HEAD:spec/models/user_spec.rb
 RSpec.describe User, type: :model do
 
   describe "association with pair" do
@@ -14,8 +13,4 @@ RSpec.describe User, type: :model do
     end
   end
 
-=======
-RSpec.describe "page/home.html.erb", type: :view do
-  pending "add some examples to (or delete) #{__FILE__}"
->>>>>>> 970d5d239932b94b365a4dcfc7348145af658fc9:spec/views/pages/home.html.erb_spec.rb
 end
