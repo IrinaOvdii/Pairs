@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
   describe "association with pair" do
-    let(:student_user) { create :user, email: "student@user.com" }
-    let(:match_user) { create :user, email: "match@user.com" }
+    let(:student_user) { create :user, email: "student@user.com", password: "123456" }
+    let(:match_user) { create :user, email: "match@user.com", password: "123456" }
 
     let!(:pair) { create :pair, student: student_user, match: match_user }
 
