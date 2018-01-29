@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :pairs
+  resources :users, only: [:index]
+  #post 'admin' => 'users#admin', as: :admin
 end
