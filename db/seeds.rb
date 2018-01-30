@@ -9,8 +9,8 @@ user5 = User.create!(name: "Arno", email: "user5@gmail.com", password: 123456, a
 user6 = User.create!(name: "Bobby", email: "user6@gmail.com", password: 123456, admin: false)
 
 
-pair1 = Pair.create!(student_id: 2, match_id: 3)
-pair2 = Pair.create!(student_id: 3, match_id: 4)
-pair2 = Pair.create!(student_id: 3, match_id: 6)
-pair3 = Pair.create!(student_id: 4, match_id: 5)
-pair4 = Pair.create!(student_id: 5, match_id: 6)
+pair1 = Pair.create!(student_id: 2, match_id: 3, user: user1)
+pair2 = Pair.create!(student_id: 3, match_id: 4, user: user1)
+pair2 = Pair.create!(student_id: 3, match_id: 6, user: user1)
+pair3 = Pair.create!(student_id: 4, match_id: 5, user: user1)
+pair4 = Pair.create!(student_id: 5, match_id: 6, user: user1)
