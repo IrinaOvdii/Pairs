@@ -1,7 +1,4 @@
 class User < ApplicationRecord
-
-  #@pairs = []
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -13,13 +10,11 @@ class User < ApplicationRecord
   has_many :users, through: :match_pairs, source: :student
   has_many :users, through: :student_pairs, source: :match
 
-  # def add_pairs
-  #   pairs << match_pairs
-  #   pairs << student_pairs
-  # end
-  #
-  # def make_admin
-  #   admin = true
-  # end
+  scope :all_students, -> { where(admin: :false) }
+  scope :all_admins, -> { where(admin: :true) }
+
+  def admin?
+    admin == true
+  end
 
 end
