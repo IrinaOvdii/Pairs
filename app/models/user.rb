@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :users, through: :match_pairs, source: :student
   has_many :users, through: :student_pairs, source: :match
 
+  has_many :pairs, dependent: :destroy
+
   scope :all_students, -> { where(admin: :false) }
   scope :all_admins, -> { where(admin: :true) }
 
