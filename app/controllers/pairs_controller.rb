@@ -22,6 +22,7 @@ class PairsController < ApplicationController
     @pair = Pair.new
   end
 
+#Why is this not working??
   def create
     @students = User.all_students
     new_pair = @students.sample(2)
