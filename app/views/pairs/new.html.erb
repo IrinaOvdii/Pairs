@@ -10,7 +10,7 @@
     <% end %>
 </ul>
 
-<%= form_for [@user, @user.pairs.new] do |f| %>
+<%= form_for @pair do |f| %>
 <div class="form-group">
    <label>Check Out:</label>
    <%= f.date_select :day %>
