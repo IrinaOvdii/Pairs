@@ -20,8 +20,8 @@ class UsersController < ApplicationController
     end
   end
 
-  # def call_make_admin
-  #
-  # end
+  def make_admin
+    admin == true
+  end
 
 end

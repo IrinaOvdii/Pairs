@@ -15,7 +15,7 @@ class User < ApplicationRecord
   scope :all_students, -> { where(admin: :false) }
   scope :all_admins, -> { where(admin: :true) }
 
-  def admin?
+  def make_admin
     admin == true
   end
 

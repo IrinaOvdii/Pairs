@@ -9,7 +9,6 @@ class PairsController < ApplicationController
     pairs << student_pairs
     pairs << match_pairs
     pairs = pairs.flatten
-    #pairs[i][i].student.name
 
     if current_user.admin
       @pairs = current_user.pairs
@@ -30,8 +29,8 @@ class PairsController < ApplicationController
     match = new_pair[1]
 
     @pair = current_user.pairs.create(pair_params.merge({
-      student_id: student,
-      match_id: match
+      student: student,
+      match: match
       }))
     redirect_to pairs_path, notice: "Pairs are created!"
   end
