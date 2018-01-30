@@ -9,15 +9,22 @@
         Your pairs
       </div>
       <div class="panel-body">
-
-        <% @pairs.each do |pair| %>
-          <div class="row">
-            <div class="col-md-7">
-              <h4><%= pair.student.name %> and <%= pair.match.name %></h4>
+        <table class="table table-striped">
+          <% @pairs.each do |pair| %>
+            <div class="row">
+              <div class="col-md-7">
+                <tr>
+                  <td>
+                    <%= pair.student.name %> and <%= pair.match.name %>
+                  </td>
+                  <td>
+                    <%= pair.day.strftime("%d %B %Y") %>
+                  </td>
+                </tr>
+              </div>
             </div>
-          </div>
-        <% end %>
-
+          <% end %>
+        </table>
       </div>
     </div>
 
