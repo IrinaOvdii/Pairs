@@ -11,6 +11,11 @@ class Api::UsersController < ApplicationController
       }.to_json
   end
 
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :admin)
+
   def make_admin
     admin == true
   end
