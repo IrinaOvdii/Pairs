@@ -21,18 +21,32 @@ class PairsController < ApplicationController
     @pair = Pair.new
   end
 
-#Why is this not working??
   def create
-    @students = User.all_students
-    new_pair = @students.sample(2)
-    student = new_pair[0]
-    match = new_pair[1]
 
-    @pair = current_user.pairs.create(pair_params.merge({
-      student: student,
-      match: match
-      }))
+    pairs = []
+    students = User.all_students.to_a
+    combination_students = students.combination(2).to_a
+    pair1 = combination_students.sample
+    combination_students.delete(pair1)
+    pairs << pair1
+    students_in_pairs = pairs.flatten
+
+    combination_students.each do |pair|
+      if !students_in_pairs.include?(pair[0]) && !students_in_pairs.include?(pair[1])
+        pairs << pair
+        students_in_pairs = pairs.flatten
+        combination_students.delete(pair)
+      end
+    end
+
+    pairs.each do |pair|
+      @pair = current_user.pairs.create(pair_params.merge({
+        student: pair[0],
+        match: pair[1]
+        }))
+    end
     redirect_to pairs_path, notice: "Pairs are created!"
+
   end
 
    private
