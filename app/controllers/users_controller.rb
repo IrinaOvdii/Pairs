@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     make_user_admin
     @user.update_attributes(user_params)
 
-    redirect_to @user
+    redirect_to users_path
 
     # if @user.update_attributes(user_params)
     #   redirect_to @user
