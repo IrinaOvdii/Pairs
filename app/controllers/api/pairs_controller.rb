@@ -4,7 +4,7 @@ before_action :setup_user
 # protect_from_forgery with: :null_session
 
 def index
-  @user = current_user
+
   pairs = []
   match_pairs = @user.match_pairs.where(match_id: @user.id)
   student_pairs = @user.student_pairs.where(student_id: @user.id)
