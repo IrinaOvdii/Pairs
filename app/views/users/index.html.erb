@@ -22,7 +22,7 @@
                     <span><%= user.admin == true ? "Admin" : "Student" %></span>
                   </td>
                   <td>
-                    <span><%= button_to "Make admin", user_path(user.id) %></span>
+                    <span><%= link_to "Make admin", user_path(user.id) %></span>
                   </td>
                 </tr>
               <% end %>
