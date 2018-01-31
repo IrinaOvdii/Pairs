@@ -1,7 +1,7 @@
 Pair.destroy_all
 User.destroy_all
 
-user1 = User.create!(name: "Irina", email: "user1@gmail.com", password: 123456, admin: true, token: "qpFoRdQFTXqYqnjcwvXtx1nj")
+user1 = User.create!(name: "Irina", email: "user1@gmail.com", password: 123456, admin: true)
 user2 = User.create!(name: "Erle", email: "user2@gmail.com", password: 123456, admin: false)
 user3 = User.create!(name: "Oskar", email: "user3@gmail.com", password: 123456, admin: false)
 user4 = User.create!(name: "Lillian", email: "user4@gmail.com", password: 123456, admin: false)

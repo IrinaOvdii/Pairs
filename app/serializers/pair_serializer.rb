@@ -1,4 +1,4 @@
-class PairsSerializer < ActiveModel::Serializer
+class PairSerializer < ActiveModel::Serializer
   attributes :day, :student_id, :match_id, :user_id
 
   belongs_to :student, :class_name => 'User', :foreign_key  => "student_id"
