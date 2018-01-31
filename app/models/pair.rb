@@ -4,6 +4,6 @@ class Pair < ApplicationRecord
   belongs_to :user
 
   def self.order_date
-    Event.order :day
+    Pair.order :day
   end
 end
