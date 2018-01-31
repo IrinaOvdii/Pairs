@@ -6,17 +6,28 @@
       </div>
       <div class="panel-body">
         <table class="table table-striped">
-          <% @pairs.each do |pair| %>
+          <% @pairs_by_date.each do |pair| %>
             <div class="row">
               <div class="col-md-7">
-                <tr>
-                  <td>
-                    <%= pair.student.name %> and <%= pair.match.name %>
-                  </td>
-                  <td>
-                    <%= pair.day.strftime("%d %B %Y") %>
-                  </td>
-                </tr>
+                <% if current_user.admin == false && (pair.day.to_date.past? || pair.day.today?) %>
+                  <tr>
+                    <td>
+                      <%= pair.student.name %> and <%= pair.match.name %>
+                    </td>
+                    <td>
+                      <%= pair.day.strftime("%d %B %Y") %>
+                    </td>
+                  </tr>
+                <% elsif current_user.admin == true %>
+                  <tr>
+                    <td>
+                      <%= pair.student.name %> and <%= pair.match.name %>
+                    </td>
+                    <td>
+                      <%= pair.day.strftime("%d %B %Y") %>
+                    </td>
+                  </tr>
+                <% end %>
               </div>
             </div>
           <% end %>
@@ -25,12 +36,15 @@
     </div>
   </div>
   <div class="col-md-9">
-    <div>
-      <h1>Today it is <%=Time.now.strftime("%d %B %Y")%></h1>
-      <h3>Your pair for today is: </h3>
-    </div>
+    <% if current_user.admin == false %>
+      <div>
+        <h1>Today it is <%=Time.now.strftime("%d %B %Y")%></h1>
+        <h3>Find your pair! <%#= @pairs.find(day: Date.today) %></h3>
+      </div>
+    <% end %>
     <br><br>
-
-    <%= link_to "Add new pair", new_pair_path, class: "btn btn-primary" %>
+    <% if current_user.admin == true %>
+      <%= link_to "Add new pair", new_pair_path, class: "btn btn-primary" %>
+    <% end %>
   </div>
 </div>

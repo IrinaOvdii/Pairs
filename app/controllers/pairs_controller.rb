@@ -12,8 +12,10 @@ class PairsController < ApplicationController
 
     if current_user.admin
       @pairs = current_user.pairs
+      @pairs_by_date = order_by_date
     else
       @pairs =  pairs
+      @pairs_by_date =  pairs.sort_by {|pair| pair.day}
     end
   end
 
@@ -26,6 +28,8 @@ class PairsController < ApplicationController
     pairs = []
     students = User.all_students.to_a
     combination_students = students.combination(2).to_a
+
+    #Make sure the first sample is random
     pair1 = combination_students.sample
     combination_students.delete(pair1)
     pairs << pair1
@@ -50,10 +54,17 @@ class PairsController < ApplicationController
   end
 
    private
+
    def pair_params
     params.require(:pair).permit(:student_id, :match_id, :user_id, :day)
    end
+
    def setup_user
      @user = current_user
    end
+
+   def order_by_date
+     current_user.pairs.order_by_date
+   end
+
 end
