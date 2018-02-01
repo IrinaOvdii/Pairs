@@ -2,7 +2,6 @@ class PairsController < ApplicationController
   before_action :authenticate_user!
   before_action :setup_user
 
-  STUDENTS = User.all_students.to_a
   $combination_students = []
 
   def index
@@ -27,12 +26,14 @@ class PairsController < ApplicationController
   end
 
   def create
+    pairs = []
+    #new_students = check_for_new_students
+
+    #current_combinations_students = User.all_students.to_a.combination(2).to_a
 
     if $combination_students.count == 0
-      $combination_students = STUDENTS.combination(2).to_a
+      $combination_students = current_students.combination(2).to_a
     end
-
-    pairs = []
 
     #Make sure the first sample is random
     pair1 = $combination_students.sample
@@ -71,5 +72,11 @@ class PairsController < ApplicationController
    def order_by_date
      current_user.pairs.order_date
    end
+
+   # def check_for_new_students
+   #   current_students = User.all_students.to_a
+   #   previous_students = $combination_students.flatten
+   #   return current_students - previous_students
+   # end
 
 end
