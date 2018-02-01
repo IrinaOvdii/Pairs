@@ -13,6 +13,8 @@ class User < ApplicationRecord
 
   has_many :pairs, dependent: :destroy
 
+  validates :name, presence: true
+
   scope :all_students, -> { where(admin: :false) }
   scope :all_admins, -> { where(admin: :true) }
 
