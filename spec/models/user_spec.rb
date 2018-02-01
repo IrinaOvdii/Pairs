@@ -5,17 +5,22 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:name) }
   end
 
-  describe "association with pair" do
-    let(:student_user) { create :user, name: "Irina", email: "student@user.com", password: "123456" }
-    let(:match_user) { create :user, name: "Oskar", email: "match@user.com", password: "123456" }
+  describe "has many association with pair" do
+    let!(:user1) { create :user, name: "Irina", email: "irina@user.com", password: "123456", admin: true }
+    let!(:user2) { create :user, name: "Oskar", email: "oskar@user.com", password: "123456" }
+    let!(:user3) { create :user, name: "Lillian", email: "lillian@user.com", password: "123456" }
+    let!(:user4) { create :user, name: "Bobby", email: "bobby@user.com", password: "123456" }
 
-    let!(:pair) { create :pair, student: student_user, match: match_user }
+    let!(:pair1) { create :pair, student: user2, match: user3 }
+    let!(:pair2) { create :pair, student: user2, match: user4 }
 
-    # it "has pairs" do
-      # expect(pair.match).to include(match_user)
-      # expect(pair.student).to include(student_user)
-      # expect(student_user.match_pairs).to include(match)
-    end
+    it "has many pairs" do
+    pair1 = user2.pairs.new(day: "2009-08-04 00:00:00")
+    pair2 = user2.pairs.new(day: "2009-08-04 00:00:00")
+
+    expect(user2.pairs).to include(pair1)
+    expect(user2.pairs).to include(pair2)
   end
 
+  end
 end
