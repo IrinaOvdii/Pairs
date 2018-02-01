@@ -2,8 +2,6 @@ class PairsController < ApplicationController
   before_action :authenticate_user!
   before_action :setup_user
 
-  $combination_students = []
-
   def index
     pairs = []
     match_pairs = current_user.match_pairs.where(match_id: current_user.id)
@@ -13,7 +11,7 @@ class PairsController < ApplicationController
     pairs = pairs.flatten
 
     if current_user.admin
-      @pairs = current_user.pairs
+      @pairs = Pair.all
       @pairs_by_date = order_by_date
     else
       @pairs =  pairs
@@ -26,26 +24,29 @@ class PairsController < ApplicationController
   end
 
   def create
+
     pairs = []
-    #new_students = check_for_new_students
+    current_students = User.all_students.to_a
+    amount_pairs = current_students.length/2
+    possible_pairs = current_students.length - 1
 
-    #current_combinations_students = User.all_students.to_a.combination(2).to_a
-
-    if $combination_students.count == 0
-      $combination_students = current_students.combination(2).to_a
+    if $taken_pairs.length == current_students.combination(2).to_a.length
+      $taken_pairs = []
     end
 
-    #Make sure the first sample is random
-    pair1 = $combination_students.sample
-    $combination_students.delete(pair1)
-    pairs << pair1
-    students_in_pairs = pairs.flatten
-
-    $combination_students.each do |pair|
-      if !students_in_pairs.include?(pair[0]) && !students_in_pairs.include?(pair[1])
-        pairs << pair
-        students_in_pairs = pairs.flatten
-        $combination_students.delete(pair)
+    while amount_pairs > 0 do
+      possible_pairs.times do
+        pair = current_students.sample(2)
+        pair = pair.sort
+        if !$taken_pairs.include?(pair)
+          current_students -= pair
+          $taken_pairs << pair
+          pairs << pair
+          amount_pairs -= 1
+          break
+        else
+          next
+        end
       end
     end
 
@@ -72,11 +73,5 @@ class PairsController < ApplicationController
    def order_by_date
      current_user.pairs.order_date
    end
-
-   # def check_for_new_students
-   #   current_students = User.all_students.to_a
-   #   previous_students = $combination_students.flatten
-   #   return current_students - previous_students
-   # end
 
 end
