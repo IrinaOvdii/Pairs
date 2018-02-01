@@ -4,21 +4,11 @@ describe "shared/_navbar.html.erb" do
   before { sign_in user }
 
   context "without profile" do
-    let(:user) { create :user }
+    let(:user) { create :user, name: "Filipe" }
 
     it "renders email" do
       render
       expect(rendered).to have_content user.email
     end
   end
-
-  # context "with profile" do
-  #   let(:profile) { build :profile }
-  #   let(:user) { create :user, profile: profile }
-  #
-  #   it "renders name" do
-  #     render
-  #     expect(rendered).to have_content profile.email
-  #   end
-  # end
 end
