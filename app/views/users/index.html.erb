@@ -22,7 +22,17 @@
                     <span><%= user.admin == true ? "Admin" : "Student" %></span>
                   </td>
                   <td>
-                    <%= link_to "Update", edit_user_path(user), class: "btn btn-default" %>
+                    <% if user.admin? %>
+                      <%= form_for user do |f| %>
+                        <%= f.hidden_field :admin, value: false %>
+                        <%= f.submit 'Make student' %>
+                      <% end %>
+                    <% else %>
+                      <%= form_for user do |f| %>
+                        <%= f.hidden_field :admin, value: true %>
+                        <%= f.submit 'Make admin' %>
+                      <% end %>
+                    <% end %>
                   </td>
                 </tr>
               <% end %>
