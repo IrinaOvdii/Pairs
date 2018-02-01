@@ -1,3 +1,15 @@
+<div>
+  <% if current_user.admin == false %>
+    <div>
+      <h1>Today it is <%=Time.now.strftime("%d %B %Y")%></h1>
+      <h3>Find your pair! <%#= @pairs.find(day: Date.today) %></h3>
+    </div>
+    <br><br>
+  <% end %>
+  <% if current_user.admin == true %>
+    <%= link_to "Add new pair", new_pair_path, class: "btn btn-primary" %>
+  <% end %>
+</div>
 <div class="row">
   <div class="col-md-6">
     <div class="panel panel-primary">
@@ -34,17 +46,5 @@
         </table>
       </div>
     </div>
-  </div>
-  <div class="col-md-4">
-    <% if current_user.admin == false %>
-      <div>
-        <h1>Today it is <%=Time.now.strftime("%d %B %Y")%></h1>
-        <h3>Find your pair! <%#= @pairs.find(day: Date.today) %></h3>
-      </div>
-    <% end %>
-    <br><br>
-    <% if current_user.admin == true %>
-      <%= link_to "Add new pair", new_pair_path, class: "btn btn-primary" %>
-    <% end %>
   </div>
 </div>
