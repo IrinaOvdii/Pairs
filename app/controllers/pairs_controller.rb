@@ -44,6 +44,12 @@ class PairsController < ApplicationController
           pairs << pair
           amount_pairs -= 1
           break
+        elsif $taken_pairs.include?(pair) && current_students.length == 2
+          current_students -= pair
+          $taken_pairs << pair
+          pairs << pair
+          amount_pairs -= 1
+          break
         else
           next
         end
