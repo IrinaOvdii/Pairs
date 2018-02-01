@@ -56,7 +56,7 @@ class PairsController < ApplicationController
         match: pair[1]
         }))
     end
-    redirect_to pairs_path, notice: "Pairs are created!"
+    redirect_to pairs_path
 
   end
 
