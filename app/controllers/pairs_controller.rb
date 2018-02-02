@@ -1,6 +1,5 @@
 class PairsController < ApplicationController
   before_action :authenticate_user!
-  before_action :setup_user
 
   def index
     pairs = []
@@ -14,7 +13,7 @@ class PairsController < ApplicationController
       @pairs = Pair.all
       @pairs_by_date = order_by_date
     else
-      @pairs =  pairs
+      @pairs = pairs
       @pairs_by_date =  pairs.sort_by {|pair| pair.day}
     end
   end
@@ -29,9 +28,9 @@ class PairsController < ApplicationController
     current_students = User.all_students.to_a
     amount_pairs = current_students.length/2
     possible_pairs = current_students.length - 1
-    #new_students = current_students - $taken_pairs.flatten (take out dubplicates first)
+    new_students = current_students - $taken_pairs.flatten
 
-    if $taken_pairs.length == current_students.combination(2).to_a.length #&& new_students.empty? == true
+    if ($taken_pairs.length == current_students.combination(2).to_a.length) && (new_students.empty? == true)
       $taken_pairs = []
     end
 
@@ -65,10 +64,6 @@ class PairsController < ApplicationController
 
    def pair_params
     params.require(:pair).permit(:student_id, :match_id, :user_id, :day)
-   end
-
-   def setup_user
-     @user = current_user
    end
 
    def order_by_date
