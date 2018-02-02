@@ -30,11 +30,9 @@ class PairsController < ApplicationController
     possible_pairs = current_students.length - 1
     new_students = current_students - $taken_pairs.flatten
 
-    #byebug
     if ($taken_pairs.length == current_students.combination(2).to_a.length) && (new_students.empty? == true)
       $taken_pairs = []
     end
-    #byebug
 
     while amount_pairs > 0 do
       possible_pairs.times do
