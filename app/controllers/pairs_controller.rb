@@ -29,7 +29,7 @@ class PairsController < ApplicationController
     current_students = User.all_students.to_a
     amount_pairs = current_students.length/2
     possible_pairs = current_students.length - 1
-    #new_students = current_students - $taken_pairs.flatten
+    #new_students = current_students - $taken_pairs.flatten (take out dubplicates first)
 
     if $taken_pairs.length == current_students.combination(2).to_a.length #&& new_students.empty? == true
       $taken_pairs = []
