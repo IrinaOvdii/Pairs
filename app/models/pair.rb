@@ -14,13 +14,13 @@ class Pair < ApplicationRecord
     match_match_pairs = Pair.where(match: this_pair.match).to_a
 
     if student_student_pairs.any? {|pair| pair[:day] == value}
-      this_pair.errors.add(attr, 'Students cannot have two pairs per day')
+     this_pair.errors.add(attr, 'Students cannot have two pairs per day')
     elsif student_match_pairs.any? {|pair| pair[:day] == value}
-      this_pair.errors.add(attr, 'Students cannot have two pairs per day')
+     this_pair.errors.add(attr, 'Students cannot have two pairs per day')
     elsif match_student_pairs.any? {|pair| pair[:day] == value}
-      this_pair.errors.add(attr, 'Students cannot have two pairs per day')
+     this_pair.errors.add(attr, 'Students cannot have two pairs per day')
     elsif match_match_pairs.any? {|pair| pair[:day] == value}
-      this_pair.errors.add(attr, 'Students cannot have two pairs per day')
+     this_pair.errors.add(attr, 'Students cannot have two pairs per day')
     end
   end
 
