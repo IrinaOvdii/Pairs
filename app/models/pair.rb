@@ -27,4 +27,5 @@ class Pair < ApplicationRecord
   def self.order_date
     Pair.order :day
   end
+
 end
