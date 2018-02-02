@@ -39,13 +39,7 @@ class PairsController < ApplicationController
       possible_pairs.times do
         pair = current_students.sample(2)
         pair = pair.sort
-        if !$taken_pairs.include?(pair)
-          current_students -= pair
-          $taken_pairs << pair
-          pairs << pair
-          amount_pairs -= 1
-          break
-        elsif $taken_pairs.include?(pair) && current_students.length == 2
+        if !$taken_pairs.include?(pair) || ($taken_pairs.include?(pair) && current_students.length == 2)
           current_students -= pair
           $taken_pairs << pair
           pairs << pair
