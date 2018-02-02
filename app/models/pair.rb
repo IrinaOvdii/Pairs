@@ -1,6 +1,10 @@
 class Pair < ApplicationRecord
 
-  #validates :day, presence: true, uniqueness: { scope: :student_id || :match_id , message: "A person can be matched only once per day" }
+    $taken_pairs = []
+
+    belongs_to :student, :class_name => 'User', :foreign_key  => "student_id"
+    belongs_to :match, :class_name => 'User', :foreign_key  => "match_id"
+    belongs_to :user
 
   validates_each :day do |this_pair, attr, value|
     student_student_pairs = Pair.where(student: this_pair.student).to_a
@@ -18,12 +22,6 @@ class Pair < ApplicationRecord
       this_pair.errors.add(attr, 'Students cannot have two pairs per day')
     end
   end
-
-  $taken_pairs = []
-
-  belongs_to :student, :class_name => 'User', :foreign_key  => "student_id"
-  belongs_to :match, :class_name => 'User', :foreign_key  => "match_id"
-  belongs_to :user
 
   def self.order_date
     Pair.order :day
