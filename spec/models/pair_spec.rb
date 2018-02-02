@@ -2,7 +2,16 @@ require 'rails_helper'
 
 RSpec.describe Pair, type: :model do
   describe "validations" do
+
+    let!(:student_user) { create :user, name: "Irina", email: "irina@user.com", password: "123456" }
+    let!(:match_user) { create :user, name: "Oskar", email: "oskar@user.com", password: "123456" }
+    let!(:pair1) { create :pair, student: student_user, match: match_user, day: "2009-08-04 00:00:00" }
+
     it { is_expected.to validate_presence_of(:day) }
+
+    # it "is cannot have two pairs per day" do
+    #   expect{Pair.new(student: student_user, match: match_user, day: "2009-08-04 00:00:00")}.to raise_error
+    # end
   end
 
   describe "association with user" do
