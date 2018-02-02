@@ -63,7 +63,7 @@ class PairsController < ApplicationController
    private
 
    def pair_params
-    params.require(:pair).permit(:student_id, :match_id, :user_id, :day)
+    params.require(:pair).permit(:student_id, :match_id, :user_id, :day, :leftover)
    end
 
    def order_by_date
