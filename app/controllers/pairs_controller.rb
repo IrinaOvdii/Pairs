@@ -67,7 +67,7 @@ class PairsController < ApplicationController
    end
 
    def order_by_date
-     current_user.pairs.order_date
+     Pair.order_date
    end
 
 end
