@@ -16,11 +16,6 @@ class UsersController < ApplicationController
 
     redirect_to users_path
 
-    # if @user.update_attributes(user_params)
-    #   redirect_to @user
-    # else
-    #   render 'edit'
-    # end
   end
 
   def make_user_admin
@@ -28,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    user_params = params.require(:user).permit(:admin)
+    user_params = params.require(:user).permit(:admin, :name)
   end
 
 end
