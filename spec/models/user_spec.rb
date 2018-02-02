@@ -11,12 +11,12 @@ RSpec.describe User, type: :model do
     let!(:user3) { create :user, name: "Lillian", email: "lillian@user.com", password: "123456" }
     let!(:user4) { create :user, name: "Bobby", email: "bobby@user.com", password: "123456" }
 
-    let!(:pair1) { create :pair, student: user2, match: user3 }
-    let!(:pair2) { create :pair, student: user2, match: user4 }
+    let!(:pair1) { create :pair, student: user2, match: user3, day: "2010-08-04 00:00:00" }
+    let!(:pair2) { create :pair, student: user2, match: user4, day: "2009-08-04 00:00:00" }
 
     it "has many pairs" do
-    pair1 = user2.pairs.new(day: "2009-08-04 00:00:00")
-    pair2 = user2.pairs.new(day: "2009-08-04 00:00:00")
+    # pair1 = user2.pairs.new(day: "2009-08-04 00:00:00")
+    # pair2 = user2.pairs.new(day: "2009-08-04 00:00:00")
 
     expect(user2.pairs).to include(pair1)
     expect(user2.pairs).to include(pair2)
