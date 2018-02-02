@@ -21,6 +21,5 @@ RSpec.describe User, type: :model do
     expect(user2.pairs).to include(pair1)
     expect(user2.pairs).to include(pair2)
   end
-
   end
 end
