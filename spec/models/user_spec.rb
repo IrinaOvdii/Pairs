@@ -15,11 +15,8 @@ RSpec.describe User, type: :model do
     let!(:pair2) { create :pair, student: user2, match: user4, day: "2009-08-04 00:00:00" }
 
     it "has many pairs" do
-    # pair1 = user2.pairs.new(day: "2009-08-04 00:00:00")
-    # pair2 = user2.pairs.new(day: "2009-08-04 00:00:00")
-
-    expect(user2.pairs).to include(pair1)
-    expect(user2.pairs).to include(pair2)
+    expect(user2.student_pairs).to include(pair1)
+    expect(user2.student_pairs).to include(pair2)
   end
   end
 end
